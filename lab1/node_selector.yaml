@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+spec:
+  selector:
+    matchLabels:
+      k8s: webapp_pods
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        k8s: webapp_pods
+    spec:
+      nodeSelector:
+        disk-type: ssd
+      containers:
+      - name: webapp
+        image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
